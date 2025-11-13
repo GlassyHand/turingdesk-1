@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turing Desk</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 메인 화면 -->
+    <div id="main-screen" class="screen active">
+        <div class="main-container">
+            <h1 class="title">TURING DESK</h1>
+            <button id="start-btn" class="btn-primary">START</button>
+        </div>
+    </div>
+
+    <!-- 스테이지 선택 화면 -->
+    <div id="stage-select-screen" class="screen">
+        <div class="stage-container">
+            <h2 class="screen-title">STAGE SELECT</h2>
+            <div class="stage-list">
+                <button class="stage-btn" data-stage="1" id="stage-1">1days</button>
+                <button class="stage-btn locked" data-stage="2" id="stage-2">???</button>
+                <button class="stage-btn locked" data-stage="3" id="stage-3">???</button>
+                <button class="stage-btn locked" data-stage="4" id="stage-4">???</button>
+                <button class="stage-btn locked" data-stage="5" id="stage-5">???</button>
+            </div>
+            <div class="stage-select-buttons">
+                <button id="back-to-main-btn" class="btn-secondary">BACK</button>
+                <button id="reset-btn" class="btn-reset">RESET</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스토리 화면 -->
+    <div id="story-screen" class="screen">
+        <div class="story-container">
+            <div class="story-text-box">
+                <div class="story-character">
+                    <div id="character-portrait" class="character-portrait">
+                        <div class="portrait-placeholder"></div>
+                    </div>
+                    <div id="character-name" class="character-name"></div>
+                </div>
+                <div id="story-text" class="story-text"></div>
+                <button id="story-next-btn" class="btn-primary">NEXT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게임 화면 -->
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <div class="game-header">
+                <div class="game-info">
+                    <span><span id="current-day">1</span>days</span>
+                    <span>SCORE: <span id="score">0</span></span>
+                    <span>CORRECT: <span id="correct-count">0</span></span>
+                    <span>WRONG: <span id="wrong-count">0</span></span>
+                </div>
+            </div>
+            <div class="game-content">
+                <div id="game-area" class="game-area">
+                    <!-- 왼쪽 컬럼 -->
+                    <div class="left-column">
+                        <!-- 방문자 캐릭터 -->
+                        <div class="visitor-display">
+                            <div id="visitor-sprite" class="visitor-sprite">
+                                <div class="sprite-placeholder">VISITOR</div>
+                            </div>
+                        </div>
+                        <!-- 통과/거부 버튼 -->
+                        <div class="decision-buttons">
+                            <button id="pass-btn" class="btn-pass">통과</button>
+                            <button id="reject-btn" class="btn-reject">거부</button>
+                        </div>
+                    </div>
+
+                    <!-- 오른쪽 컬럼 -->
+                    <div class="right-column">
+                        <!-- ID 카드 -->
+                        <div class="id-card-panel">
+                            <div class="panel-header">
+                                <span>ID 카드</span>
+                                <div class="panel-controls">
+                                    <span class="control-icon">⏸</span>
+                                    <span class="control-icon">✕</span>
+                                </div>
+                            </div>
+                            <div class="id-card-content">
+                                <div class="id-photo">
+                                    <div id="id-photo-placeholder" class="photo-placeholder">PHOTO</div>
+                                </div>
+                                <div class="id-info">
+                                    <div class="info-row">
+                                        <span class="info-label">이름:</span>
+                                        <span id="id-name" class="info-value">-</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">출신지:</span>
+                                        <span id="id-origin" class="info-value">-</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">만료기한:</span>
+                                        <span id="id-expiry" class="info-value">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 적외선 탐지와 대화 버튼 컨테이너 -->
+                        <div class="detection-dialogue-container">
+                            <!-- 적외선 탐지 -->
+                            <div class="detection-section">
+                                <button id="infrared-btn" class="btn-infrared">
+                                    <div class="detection-circle"></div>
+                                    <span>적외선 탐지</span>
+                                </button>
+                                <div id="detection-bar" class="detection-bar">
+                                    <div class="detection-fill"></div>
+                                </div>
+                            </div>
+
+                            <!-- 대화 버튼들 -->
+                            <div class="dialogue-buttons">
+                                <button id="dialogue-btn-1" class="btn-dialogue">대화 1</button>
+                                <button id="dialogue-btn-2" class="btn-dialogue">대화 2</button>
+                                <button id="dialogue-btn-3" class="btn-dialogue">대화 3</button>
+                            </div>
+                        </div>
+
+                        <!-- 지도 API 영역 -->
+                        <div class="map-panel">
+                            <div class="panel-header">
+                                <span>지도</span>
+                                <div class="panel-controls">
+                                    <span class="control-icon">⏸</span>
+                                    <span class="control-icon">✕</span>
+                                </div>
+                            </div>
+                            <div class="map-content">
+                                <div id="map-placeholder" class="map-placeholder">지도 API 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 정산 화면 -->
+    <div id="result-screen" class="screen">
+        <div class="result-container">
+            <h2 class="screen-title">RESULT</h2>
+            <div class="result-stats">
+                <div class="stat-item">
+                    <span class="stat-label">CORRECT:</span>
+                    <span class="stat-value" id="result-correct">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">WRONG:</span>
+                    <span class="stat-value" id="result-wrong">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">TOTAL:</span>
+                    <span class="stat-value" id="result-total">0</span>
+                </div>
+            </div>
+            <div id="unlock-message" class="unlock-message"></div>
+            <div class="result-buttons">
+                <button id="retry-btn" class="btn-primary">RETRY</button>
+                <button id="stage-select-result-btn" class="btn-secondary">STAGE SELECT</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
+
